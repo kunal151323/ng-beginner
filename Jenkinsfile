@@ -1,10 +1,6 @@
 pipeline {
     agent any
 
-    tools {
-        nodejs 'NodeJS20'
-    }
-
     environment {
         S3_BUCKET = 'myk5.com'
         AWS_DEFAULT_REGION = 'ap-south-1'
@@ -12,9 +8,12 @@ pipeline {
 
     stages {
 
-        stage('Clone Repository') {
+        stage('Check Node') {
             steps {
-                git 'https://github.com/kunal151323/ng-beginner.git'
+                sh '''
+                node -v
+                npm -v
+                '''
             }
         }
 
